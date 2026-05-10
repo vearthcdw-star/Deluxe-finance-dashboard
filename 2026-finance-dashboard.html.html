@@ -1,0 +1,271 @@
+<script>
+/************************************************************
+ * PLAN DATA (split by lender, then merged)
+ ************************************************************/
+
+/* -------- SYNCHRONY (UPDATED FROM PDF) -------- */
+const synchronyPlans = [
+  { id: "syn-920", program: "Synchrony", name: "No Interest if Paid in Full within 6 Months (Plan 920)", apr: 0.0, termMonths: 6, paymentFactor: 0.0250, merchantFeePct: 5.6 },
+
+  { id: "syn-990", program: "Synchrony", name: "5.99% APR Until Paid in Full (Plan 990)", apr: 5.99, termMonths: null, paymentFactor: 0.0400, merchantFeePct: 8.85 },
+  { id: "syn-991", program: "Synchrony", name: "7.99% APR Until Paid in Full (Plan 991)", apr: 7.99, termMonths: null, paymentFactor: 0.0400, merchantFeePct: 8.6 },
+  { id: "syn-992", program: "Synchrony", name: "9.99% APR Until Paid in Full (Plan 992)", apr: 9.99, termMonths: null, paymentFactor: 0.0400, merchantFeePct: 6.95 },
+
+  { id: "syn-970", program: "Synchrony", name: "5.99% APR Until Paid in Full (Plan 970)", apr: 5.99, termMonths: null, paymentFactor: 0.0200, merchantFeePct: 12.75 },
+  { id: "syn-971", program: "Synchrony", name: "7.99% APR Until Paid in Full (Plan 971)", apr: 7.99, termMonths: null, paymentFactor: 0.0200, merchantFeePct: 9.6 },
+  { id: "syn-950", program: "Synchrony", name: "5.99% APR Until Paid in Full (Plan 950)", apr: 5.99, termMonths: null, paymentFactor: 0.0150, merchantFeePct: 16.25 },
+  { id: "syn-972", program: "Synchrony", name: "9.99% APR Until Paid in Full (Plan 972)", apr: 9.99, termMonths: null, paymentFactor: 0.0200, merchantFeePct: 8.65 },
+  { id: "syn-951", program: "Synchrony", name: "7.99% APR Until Paid in Full (Plan 951)", apr: 7.99, termMonths: null, paymentFactor: 0.0150, merchantFeePct: 11.85 },
+
+  { id: "syn-980", program: "Synchrony", name: "5.99% APR Until Paid in Full (Plan 980)", apr: 5.99, termMonths: null, paymentFactor: 0.0300, merchantFeePct: 9.6 },
+  { id: "syn-981", program: "Synchrony", name: "7.99% APR Until Paid in Full (Plan 981)", apr: 7.99, termMonths: null, paymentFactor: 0.0300, merchantFeePct: 8.85 },
+  { id: "syn-960", program: "Synchrony", name: "3.99% APR Until Paid in Full (Plan 960)", apr: 3.99, termMonths: null, paymentFactor: 0.0175, merchantFeePct: 17.25 },
+  { id: "syn-982", program: "Synchrony", name: "9.99% APR Until Paid in Full (Plan 982)", apr: 9.99, termMonths: null, paymentFactor: 0.0300, merchantFeePct: 8.0 },
+  { id: "syn-961", program: "Synchrony", name: "5.99% APR Until Paid in Full (Plan 961)", apr: 5.99, termMonths: null, paymentFactor: 0.0175, merchantFeePct: 14.5 },
+  { id: "syn-940", program: "Synchrony", name: "3.99% APR Until Paid in Full (Plan 940)", apr: 3.99, termMonths: null, paymentFactor: 0.0125, merchantFeePct: 23.75 },
+  { id: "syn-962", program: "Synchrony", name: "2.99% APR Until Paid in Full (Plan 962)", apr: 2.99, termMonths: null, paymentFactor: 0.0175, merchantFeePct: 10.75 },
+  { id: "syn-941", program: "Synchrony", name: "5.99% APR Until Paid in Full (Plan 941)", apr: 5.99, termMonths: null, paymentFactor: 0.0125, merchantFeePct: 17.6 },
+  { id: "syn-963", program: "Synchrony", name: "9.99% APR Until Paid in Full (Plan 963)", apr: 9.99, termMonths: null, paymentFactor: 0.0175, merchantFeePct: 8.85 },
+  { id: "syn-942", program: "Synchrony", name: "7.99% APR Until Paid in Full (Plan 942)", apr: 7.99, termMonths: null, paymentFactor: 0.0125, merchantFeePct: 12.75 },
+  { id: "syn-964", program: "Synchrony", name: "10.99% APR Until Paid in Full (Plan 964)", apr: 10.99, termMonths: null, paymentFactor: 0.0175, merchantFeePct: 5.75 },
+  { id: "syn-965", program: "Synchrony", name: "11.99% APR Until Paid in Full (Plan 965)", apr: 11.99, termMonths: null, paymentFactor: 0.0175, merchantFeePct: 4.6 },
+  { id: "syn-943", program: "Synchrony", name: "9.99% APR Until Paid in Full (Plan 943)", apr: 9.99, termMonths: null, paymentFactor: 0.0125, merchantFeePct: 9.6 },
+
+  { id: "syn-930", program: "Synchrony", name: "0% Interest for 25 Months (Plan 930)", apr: 0.0, termMonths: 25, paymentFactor: 0.0400, merchantFeePct: 12.6 },
+  { id: "syn-931", program: "Synchrony", name: "0% Interest for 36 Months (Plan 931)", apr: 0.0, termMonths: 36, paymentFactor: 0.0278, merchantFeePct: 17.45 },
+  { id: "syn-932", program: "Synchrony", name: "0% Interest for 48 Months (Plan 932)", apr: 0.0, termMonths: 48, paymentFactor: 0.0208, merchantFeePct: 19.2 },
+  { id: "syn-933", program: "Synchrony", name: "0% Interest for 60 Months (Plan 933)", apr: 0.0, termMonths: 60, paymentFactor: 0.0167, merchantFeePct: 21.7 },
+  { id: "syn-934", program: "Synchrony", name: "0% Interest for 72 Months (Plan 934)", apr: 0.0, termMonths: 72, paymentFactor: 0.0139, merchantFeePct: 25.4 },
+
+  { id: "syn-921", program: "Synchrony", name: "No Interest if Paid in Full within 9 Months (Plan 921)", apr: 0.0, termMonths: 9, paymentFactor: 0.0250, merchantFeePct: 7.6 },
+  { id: "syn-922", program: "Synchrony", name: "No Interest if Paid in Full within 12 Months (Plan 922)", apr: 0.0, termMonths: 12, paymentFactor: 0.0250, merchantFeePct: 8.35 },
+  { id: "syn-923", program: "Synchrony", name: "No Interest if Paid in Full within 15 Months (Plan 923)", apr: 0.0, termMonths: 15, paymentFactor: 0.0250, merchantFeePct: 8.8 },
+  { id: "syn-924", program: "Synchrony", name: "No Interest if Paid in Full within 18 Months (Plan 924)", apr: 0.0, termMonths: 18, paymentFactor: 0.0250, merchantFeePct: 9.1 },
+  { id: "syn-925", program: "Synchrony", name: "No Interest if Paid in Full within 24 Months (Plan 925)", apr: 0.0, termMonths: 24, paymentFactor: 0.0250, merchantFeePct: 12.25 }
+];
+
+/* -------- WELLS FARGO (KEEP YOUR UPDATED VALUES HERE) -------- */
+const wellsFargoPlans = [
+  { id: "wf-1", program: "Wells Fargo", name: "WF 12 mo Special", apr: 0.0, termMonths: 12, paymentFactor: null, merchantFeePct: 9.0 },
+  { id: "wf-2", program: "Wells Fargo", name: "WF 24 mo Equal Pay", apr: 9.99, termMonths: 24, paymentFactor: null, merchantFeePct: 7.0 },
+  { id: "wf-3", program: "Wells Fargo", name: "WF 36 mo Equal Pay", apr: 11.99, termMonths: 36, paymentFactor: null, merchantFeePct: 8.0 },
+  { id: "wf-4", program: "Wells Fargo", name: "WF 60 mo Reduced APR", apr: 7.99, termMonths: 60, paymentFactor: null, merchantFeePct: 6.0 },
+  { id: "wf-5", program: "Wells Fargo", name: "WF 84 mo Reduced APR", apr: 9.99, termMonths: 84, paymentFactor: null, merchantFeePct: 8.5 },
+  { id: "wf-6", program: "Wells Fargo", name: "WF 120 mo Reduced APR", apr: 11.99, termMonths: 120, paymentFactor: null, merchantFeePct: 10.0 },
+  { id: "wf-7", program: "Wells Fargo", name: "WF 18 mo Promo", apr: 0.0, termMonths: 18, paymentFactor: null, merchantFeePct: 9.5 },
+  { id: "wf-8", program: "Wells Fargo", name: "WF 96 mo Reduced APR", apr: 8.99, termMonths: 96, paymentFactor: null, merchantFeePct: 7.5 },
+  { id: "wf-9", program: "Wells Fargo", name: "WF 144 mo Reduced APR", apr: 10.99, termMonths: 144, paymentFactor: null, merchantFeePct: 11.0 }
+];
+
+/* -------- GREEN SKY (KEEP YOUR UPDATED VALUES HERE) -------- */
+const greenSkyPlans = [
+  { id: "gs-1", program: "GreenSky", name: "GS 12 mo No Interest", apr: 0.0, termMonths: 12, paymentFactor: null, merchantFeePct: 9.5 },
+  { id: "gs-2", program: "GreenSky", name: "GS 24 mo Equal Pay", apr: 9.99, termMonths: 24, paymentFactor: null, merchantFeePct: 7.5 },
+  { id: "gs-3", program: "GreenSky", name: "GS 36 mo Equal Pay", apr: 11.99, termMonths: 36, paymentFactor: null, merchantFeePct: 8.5 },
+  { id: "gs-4", program: "GreenSky", name: "GS 60 mo Reduced APR", apr: 7.99, termMonths: 60, paymentFactor: null, merchantFeePct: 6.5 },
+  { id: "gs-5", program: "GreenSky", name: "GS 84 mo Reduced APR", apr: 9.99, termMonths: 84, paymentFactor: null, merchantFeePct: 9.0 },
+  { id: "gs-6", program: "GreenSky", name: "GS 120 mo Reduced APR", apr: 11.99, termMonths: 120, paymentFactor: null, merchantFeePct: 10.5 },
+  { id: "gs-7", program: "GreenSky", name: "GS 18 mo Promo", apr: 0.0, termMonths: 18, paymentFactor: null, merchantFeePct: 8.5 },
+  { id: "gs-8", program: "GreenSky", name: "GS 96 mo Reduced APR", apr: 8.99, termMonths: 96, paymentFactor: null, merchantFeePct: 7.0 },
+  { id: "gs-9", program: "GreenSky", name: "GS 144 mo Reduced APR", apr: 10.99, termMonths: 144, paymentFactor: null, merchantFeePct: 11.5 }
+];
+
+/* -------- SYNCHRONY REVOLVING (UNCHANGED) -------- */
+const synchronyRevolvingPlans = [
+  { id: "synrev-1", program: "Synchrony Revolving", name: "Synchrony Revolving Standard", apr: 24.99, termMonths: 180, paymentFactor: 0.03, merchantFeePct: 3.0 },
+  { id: "synrev-2", program: "Synchrony Revolving", name: "Synchrony Revolving Promo", apr: 19.99, termMonths: 180, paymentFactor: 0.025, merchantFeePct: 4.0 }
+];
+
+/* -------- MERGED MASTER ARRAY -------- */
+const plans = [
+  ...synchronyPlans,
+  ...wellsFargoPlans,
+  ...greenSkyPlans,
+  ...synchronyRevolvingPlans
+];
+
+/************************************************************
+ * UTILITIES
+ ************************************************************/
+let showDetails = false;
+
+function formatCurrency(v) {
+  return "$" + (isFinite(v) ? v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") : "0.00");
+}
+
+function feeClass(pct) {
+  if (pct >= 10) return "fee-red";
+  if (pct >= 8) return "fee-yellow";
+  return "fee-green";
+}
+
+function calcPayment(principal, apr, termMonths, factor) {
+  if (factor) return principal * factor;
+
+  const r = apr / 100 / 12;
+  if (r === 0) return principal / termMonths;
+
+  const pow = Math.pow(1 + r, termMonths);
+  return principal * (r * pow) / (pow - 1);
+}
+
+function calcInterest(principal, payment, apr, termMonths) {
+  const r = apr / 100 / 12;
+  let bal = principal;
+  let total = 0;
+
+  for (let i = 0; i < termMonths; i++) {
+    const interest = bal * r;
+    const principalPaid = payment - interest;
+    bal -= principalPaid;
+    total += interest;
+    if (bal <= 0) break;
+  }
+  return Math.max(0, total);
+}
+
+function calcMerchantFee(principal, pct) {
+  return principal * (pct / 100);
+}
+
+/************************************************************
+ * AUTO-FINANCED CALC
+ ************************************************************/
+function updateAutoFinanced() {
+  const job = parseFloat(jobCost.value || 0);
+  const down = parseFloat(downPayment.value || 0);
+  const financed = Math.max(0, job - down);
+
+  autoFinancedDisplay.textContent = formatCurrency(financed);
+
+  if (!financedAmount.value) {
+    financedAmount.value = financed.toFixed(2);
+  }
+}
+
+/************************************************************
+ * MAIN CALCULATION ENGINE
+ ************************************************************/
+function calculatePayments() {
+  const principal = parseFloat(financedAmount.value || 0);
+  const desiredMonths = (parseInt(desiredYears.value || 0) * 12) + parseInt(desiredMonths.value || 0);
+
+  if (principal <= 0) {
+    plansBody.innerHTML = "";
+    planCount.textContent = "0 plans";
+    top3.innerHTML = "";
+    return;
+  }
+
+  const results = plans.map(p => {
+    const payment = calcPayment(principal, p.apr, p.termMonths || 0, p.paymentFactor);
+    const interest = p.termMonths ? calcInterest(principal, payment, p.apr, p.termMonths) : 0;
+    const fee = calcMerchantFee(principal, p.merchantFeePct);
+    const margin = principal - fee;
+
+    return {
+      plan: p,
+      payment,
+      interest,
+      fee,
+      margin,
+      withinDesired: desiredMonths > 0 ? (p.termMonths ? p.termMonths <= desiredMonths : null) : null
+    };
+  });
+
+  results.sort((a, b) => a.payment - b.payment);
+
+  renderPlans(results);
+  renderTop3(results);
+}
+
+/************************************************************
+ * RENDERING
+ ************************************************************/
+function renderPlans(list) {
+  plansBody.innerHTML = "";
+  planCount.textContent = list.length + " plans";
+
+  list.forEach(r => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td></td>
+      <td></td>
+      <td>%</td>
+      <td> "-"</td>
+      <td></td>
+      <td class="details-col  "hidden""></td>
+      <td class="details-col  "hidden"">
+        <span class="fee-chip ">%</span>
+      </td>
+    `;
+
+    plansBody.appendChild(tr);
+  });
+}
+
+function renderTop3(list) {
+  if (!list.length) {
+    top3.innerHTML = "";
+    return;
+  }
+
+  const bestMargin = [...list].sort((a, b) => b.margin - a.margin)[0];
+  const lowestPayment = list[0];
+  const fastest = [...list].filter(r => r.plan.termMonths).sort((a, b) => a.plan.termMonths - b.plan.termMonths)[0] || list[0];
+
+  top3.innerHTML = `
+    <div><strong>Best Margin:</strong>  – <br>
+      Payment:  | Term:  "-"</div><br>
+
+    <div><strong>Lowest Payment:</strong>  – <br>
+      Payment:  | Term:  "-"</div><br>
+
+    <div><strong>Fastest Payoff:</strong>  – <br>
+      Payment:  | Term:  "-"</div>
+  `;
+}
+
+/************************************************************
+ * BUTTONS & EVENTS
+ ************************************************************/
+jobCost.addEventListener("input", updateAutoFinanced);
+downPayment.addEventListener("input", updateAutoFinanced);
+
+calculateBtn.addEventListener("click", calculatePayments);
+
+resetBtn.addEventListener("click", () => {
+  workOrder.value = "";
+  customerName.value = "";
+  jobCost.value = "";
+  downPayment.value = "";
+  financedAmount.value = "";
+  desiredYears.value = "";
+  desiredMonths.value = "";
+  autoFinancedDisplay.textContent = ".00";
+  plansBody.innerHTML = "";
+  planCount.textContent = "0 plans";
+  top3.innerHTML = "";
+});
+
+toggleDetailsBtn.addEventListener("click", () => {
+  showDetails = !showDetails;
+  document.querySelectorAll(".details-col").forEach(el => {
+    el.classList.toggle("hidden", !showDetails);
+  });
+});
+
+pdfBtn.addEventListener("click", () => window.print());
+
+wellsBtn.addEventListener("click", () =>
+  window.open("https://retailservices.wellsfargo.com/ahapp/init-app?m=0024322380&l=en_US", "_blank")
+);
+
+greenskyBtn.addEventListener("click", () =>
+  window.open("https://www.greensky.com", "_blank")
+);
+
+// Initialize
+updateAutoFinanced();
+</script>
